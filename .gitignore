@@ -1,0 +1,51 @@
+# ===========================
+# Global ignores (system, logs)
+# ===========================
+.DS_Store
+Thumbs.db
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===========================
+# React (Vite + TS) Frontend
+# ===========================
+client/node_modules/
+client/dist/
+client/.env
+client/.env.*.local
+client/.vscode/
+
+# ===========================
+# ASP.NET Core Backend
+# ===========================
+server/bin/
+server/obj/
+server/.vs/
+server/.vscode/
+server/*.user
+server/*.suo
+server/wwwroot/           # Used only if you're serving the React build from .NET
+server/appsettings.Development.json
+server/appsettings.Local.json
+server/secrets.json
+
+# ===========================
+# IDEs / Tooling
+# ===========================
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.DotSettings.user
+
+# ===========================
+# Misc
+# ===========================
+artifacts/
+project.lock.json
+project.fragment.lock.json
+
