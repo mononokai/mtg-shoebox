@@ -1,0 +1,1 @@
+Application for browsing Magic the Gathering cards utilizing Elasticsearch
