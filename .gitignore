@@ -27,7 +27,7 @@ server/.vs/
 server/.vscode/
 server/*.user
 server/*.suo
-server/wwwroot/           # Used only if you're serving the React build from .NET
+server/wwwroot/ 
 server/appsettings.Development.json
 server/appsettings.Local.json
 server/secrets.json
