@@ -10,14 +10,14 @@ namespace MTGShoebox.Controllers
     {
         [HttpGet]
         // TODO: Change to ActionResult<List<Card>> once the Card model is made
-        public IActionResult Get([FromQuery] string q)
+        public ActionResult<List<Card>> Get([FromQuery] string q)
         {
             // TODO: Set up for Elastic querying
-            List<object> testData = new List<object>
+            List<Card> testData = new List<Card>
             {
-                new { Name = "Lightning Bolt", ManaCos = "{R}", Type = "Instant" },
-                new { Name = "Black Lotus", ManaCost = "{0}", Type = "Artifact" },
-                new { Name = "Sol Ring", ManaCost = "{1}", Type = "Artifact"}
+                new Card { Name = "Lightning Bolt", ManaCost = "{R}", Type = "Instant" },
+                new Card { Name = "Black Lotus", ManaCost = "{0}", Type = "Artifact" },
+                new Card { Name = "Sol Ring", ManaCost = "{1}", Type = "Artifact"}
             };
 
             // Returns a JSON formatted body with an HTTP 200 OK status
