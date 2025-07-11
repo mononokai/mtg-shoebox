@@ -27,16 +27,17 @@ namespace MTGShoebox.Controllers
                 .Query(query => query
                     .Match(match => match
                         .Field(field => field.Name)
-                            .Query("bolt")
+                            .Query(q)
                     )
                 )
                 .Size(10) // TODO: Adjust the size once pagination is implemented
             );
 
+            // !! This is test code, remove once no longer needed
             Console.WriteLine("Results:");
             foreach (var hit in response.Hits)
             {
-                Console.WriteLine($"Card Name: {hit.Source.Name} - Type: {hit.Source.Type} - Mana Cost: {hit.Source.ManaCost}");
+                Console.WriteLine($"Card Name: {hit.Source.Name} - Type: {hit.Source.Type} - Mana Cost: {hit.Source.ManaCost} - Scryfall ID: {hit.Source.ScryfallId}");
             }
 
             var cards = response.Hits.Select(hit => hit.Source).ToList();
