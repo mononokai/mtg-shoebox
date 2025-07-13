@@ -4,11 +4,14 @@ import type { Card } from "../types/Card"
 export default function SearchPage() {
   const [cards, setCards] = useState<Card[]>();
   const [input, setInput] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   function searchCards(query: string) {
+    setIsLoading(true);
     fetch(`http://localhost:5276/api/cards?q=${query}`)
       .then(res => res.json())
       .then(data => setCards(data));
+    setIsLoading(false);
   }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
@@ -28,9 +31,11 @@ export default function SearchPage() {
         <button onClick={() => searchCards(input || "")}>Search</button>
       </div>
       <div>
-        {!cards? (
+        {isLoading ? (
           <p>Loading...</p>
-        ) : cards.length === 0 ? (
+        ) : !cards ? (
+          <p>Something went wrong.</p>
+        ) :cards.length === 0 ? (
           <p>No cards found.</p>
         ) : (
           cards.map(card => (
