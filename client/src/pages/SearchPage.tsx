@@ -5,12 +5,35 @@ export default function SearchPage() {
   const [cards, setCards] = useState<Card[]>();
   const [input, setInput] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  function searchCards(query: string) {
+  async function searchCards(query: string) {
     setIsLoading(true);
-    fetch(`http://localhost:5276/api/cards?q=${query}`)
-      .then(res => res.json())
-      .then(data => setCards(data));
+    setErrorMessage(null);
+
+    try {
+      const res = await fetch(`http://localhost:5276/api/cards?q=${query}`);
+
+      if (!res.ok) {
+        throw new Error(`Server error (${res.status})`);
+      }
+
+      const data = await res.json();
+      setCards(data);
+    } 
+    catch (error) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+        console.error(error.message);
+      }
+      else {
+        setErrorMessage("Unknown error");
+        console.error("An unknown error occurred");
+      }
+    }
+    
+
+
     setIsLoading(false);
   }
 
