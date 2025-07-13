@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react"
-import type { Card } from "../types/Card"
+import { useEffect, useState } from 'react';
+import type { Card } from '../types/Card';
 
 export default function SearchPage() {
   const [cards, setCards] = useState<Card[]>();
-  const [input, setInput] = useState<string>("");
+  const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
+  // Sends queries to the API
   async function searchCards(query: string) {
     setIsLoading(true);
     setErrorMessage(null);
@@ -14,58 +15,69 @@ export default function SearchPage() {
     try {
       const res = await fetch(`http://localhost:5276/api/cards?q=${query}`);
 
+      // Check for HTTP errors
       if (!res.ok) {
         throw new Error(`Server error (${res.status})`);
       }
 
       const data = await res.json();
       setCards(data);
-    } 
-    catch (error) {
+    } catch (error) {
       if (error instanceof Error) {
         setErrorMessage(error.message);
         console.error(error.message);
-      }
-      else {
-        setErrorMessage("Unknown error");
-        console.error("An unknown error occurred");
+      } else {
+        setErrorMessage('Unknown error');
+        console.error('An unknown error occurred');
       }
     }
-    
-
 
     setIsLoading(false);
   }
 
+  // Press "Enter" to search
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
-    if (event.key === "Enter") {
-      searchCards(input || "");
+    if (event.key === 'Enter') {
+      searchCards(input || '');
     }
   }
 
   useEffect(() => {
-    searchCards("bolt");
+    searchCards('bolt');
   }, []);
 
   return (
     <div>
       <div>
-        <input type="search" value={input} onChange={e => setInput(e.target.value)} onKeyDown={handleKeyDown} />
-        <button onClick={() => searchCards(input || "")}>Search</button>
+        <input
+          type="search"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <button
+          onClick={() => searchCards(input || '')}
+          disabled={input.trim() === ''}
+        >
+          Search
+        </button>
       </div>
       <div>
         {isLoading ? (
           <p>Loading...</p>
         ) : !cards ? (
           <p>Something went wrong.</p>
-        ) :cards.length === 0 ? (
+        ) : cards.length === 0 ? (
           <p>No cards found.</p>
         ) : (
-          cards.map(card => (
-            <p key={card.scryfallId || card.name}>{card.name} {card.manaCost} {card.type} {card.scryfallId ? `(${card.scryfallId})` : ""}</p>
+          cards.map((card) => (
+            <p key={card.scryfallId || card.name}>
+              {card.name} {card.manaCost} {card.type}{' '}
+              {card.scryfallId ? `(${card.scryfallId})` : ''}
+            </p>
           ))
         )}
       </div>
     </div>
-  )
+  );
 }
