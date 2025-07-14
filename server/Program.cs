@@ -1,9 +1,7 @@
-// Create web app builder
 using Elastic.Clients.Elasticsearch;
-using Elastic.Clients.Elasticsearch.Security;
-using Elastic.Transport;
-using Microsoft.AspNetCore.Http.Connections;
+using MTGShoebox.Services;
 
+// Create web app builder
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
 // Register CORS to allow requests from the React app
@@ -22,6 +20,9 @@ builder.Services.AddCors(options =>
 
 // Add controller support
 builder.Services.AddControllers();
+
+// Add CardSearchService
+builder.Services.AddScoped<CardSearchService>();
 
 // Grab Elastic connection settings from configuration
 var uri = builder.Configuration["Elasticsearch:Uri"];
