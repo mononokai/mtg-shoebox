@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import type { Card } from '../types/Card';
+import { useEffect, useState } from 'react'
+import type { Card } from '../types/Card'
+import { fetchCards } from '../services/cardService'
 
 export default function SearchPage() {
   const [cards, setCards] = useState<Card[]>();
@@ -11,16 +12,9 @@ export default function SearchPage() {
   async function searchCards(query: string) {
     setIsLoading(true);
     setErrorMessage(null);
-
+    
     try {
-      const res = await fetch(`http://localhost:5276/api/cards?q=${query}`);
-
-      // Check for HTTP errors
-      if (!res.ok) {
-        throw new Error(`Server error (${res.status})`);
-      }
-
-      const data = await res.json();
+      const data = await fetchCards(query);
       setCards(data);
     } catch (error) {
       if (error instanceof Error) {
@@ -63,6 +57,10 @@ export default function SearchPage() {
         </button>
       </div>
       <div>
+        {errorMessage && (
+          <p style={{ color: 'red '}}>{errorMessage}</p>
+        )}
+
         {isLoading ? (
           <p>Loading...</p>
         ) : !cards ? (
