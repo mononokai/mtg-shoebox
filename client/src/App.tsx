@@ -1,14 +1,11 @@
-import { useState } from 'react'
 import SearchPage from "./pages/SearchPage"
-import './App.css'
+import Layout from './layouts/Layout'
 
 function App() {
   return (
-    <>
-      <div>
-        <SearchPage/>
-      </div>
-    </>
+    <Layout>
+      <SearchPage/>
+    </Layout>
   )
 }
 
