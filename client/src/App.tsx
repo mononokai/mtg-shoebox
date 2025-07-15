@@ -1,10 +1,10 @@
-import SearchPage from "./pages/SearchPage"
+import HomePage from "./pages/HomePage"
 import Layout from './layouts/Layout'
 
 function App() {
   return (
     <Layout>
-      <SearchPage/>
+      <HomePage/>
     </Layout>
   )
 }
