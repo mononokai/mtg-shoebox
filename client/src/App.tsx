@@ -1,14 +1,16 @@
-import { useState } from 'react'
+import HomePage from "./pages/HomePage"
 import SearchPage from "./pages/SearchPage"
-import './App.css'
+import Layout from './layouts/Layout'
+import { Routes, Route } from "react-router-dom"
 
 function App() {
   return (
-    <>
-      <div>
-        <SearchPage/>
-      </div>
-    </>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
+      </Routes>
+    </Layout>
   )
 }
 

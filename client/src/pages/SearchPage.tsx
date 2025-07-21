@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react'
-import type { Card } from '../types/Card'
-import { fetchCards } from '../services/cardService'
+import { useEffect, useState } from 'react';
+import type { Card } from '../types/Card';
+import { fetchCards } from '../services/cardService';
 import SearchResult from '../components/SearchResult';
+import { useSearchParams } from 'react-router-dom';
 
 export default function SearchPage() {
   const [cards, setCards] = useState<Card[]>();
   const [input, setInput] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [hasSearched, setHasSearched] = useState<boolean>(false);
+  const [searchParams] = useSearchParams();
 
   // Sends queries to the API
   async function searchCards(query: string) {
     setIsLoading(true);
     setErrorMessage(null);
-    
+
     try {
       const data = await fetchCards(query);
       setCards(data);
@@ -28,6 +31,7 @@ export default function SearchPage() {
     }
 
     setIsLoading(false);
+    setHasSearched(true);
   }
 
   // Press "Enter" to search
@@ -37,9 +41,25 @@ export default function SearchPage() {
     }
   }
 
+  // Submit search on page load if there is a "q" value in URL
   useEffect(() => {
-    searchCards('bolt');
-  }, []);
+    const q = searchParams.get('q');
+
+    if (q !== null && q.trim() !== '') {
+      searchCards(q);
+    }
+  }, [searchParams]);
+
+  // On page load, set input value to match "q" value in URL
+  useEffect(() => {
+    const q = searchParams.get('q');
+
+    if (q !== null && q !== input) {
+      setInput(q);
+    }
+    // Suppress ESLint warning - only using input for comparison
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   return (
     <div>
@@ -58,11 +78,13 @@ export default function SearchPage() {
         </button>
       </div>
       <div>
-        {errorMessage && (
-          <p style={{ color: 'red '}}>{errorMessage}</p>
-        )}
-
-        <SearchResult isLoading={isLoading} cards={cards}/>
+        {errorMessage && <p style={{ color: 'red ' }}>{errorMessage}</p>}
+        <SearchResult
+          isLoading={isLoading}
+          cards={cards}
+          // Check if there's a "q" value in URL
+          hasSearched={hasSearched && !!searchParams.get('q')}
+        />
       </div>
     </div>
   );

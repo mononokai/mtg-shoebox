@@ -12,14 +12,14 @@ namespace MTGShoebox.Services
             _client = client;
         }
 
-        public async Task<List<Card>> SearchCards(string query)
+        public async Task<List<Card>> SearchCards(string q)
         {
             var response = await _client.SearchAsync<Card>(search => search
                 .Indices("mtg_cards")
                 .Query(query => query
                     .Match(match => match
                         .Field(field => field.Name)
-                            .Query(query)
+                            .Query(q)
                     )
                 )
                 .Size(10) // TODO: Adjust the size once pagination is implemented
