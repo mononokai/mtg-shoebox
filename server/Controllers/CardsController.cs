@@ -21,9 +21,9 @@ namespace MTGShoebox.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Card>>> Get([FromQuery] string query)
+        public async Task<ActionResult<List<Card>>> Get([FromQuery] string q)
         {
-            var cards = await _searchService.SearchCards(query);
+            var cards = await _searchService.SearchCards(q);
             
             // Returns a JSON formatted body with an HTTP 200 OK status
             return Ok(cards);
