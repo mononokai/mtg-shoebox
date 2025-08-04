@@ -147,9 +147,9 @@ namespace MTGShoebox.Models
     public class RelatedCards
     {
         [JsonPropertyName("reverseRelated")]
-        public string? ReverseRelated { get; set; }
+        public List<string>? ReverseRelated { get; set; }
         [JsonPropertyName("spellbook")]
-        public string? Spellbook { get; set; }
+        public List<string>? Spellbook { get; set; }
     }
 
     public class Rulings
