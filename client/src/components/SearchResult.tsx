@@ -19,10 +19,15 @@ export default function SearchResult({ isLoading, cards, hasSearched }: SearchRe
           <p>No cards found.</p>
         ) : (
           cards.map((card) => (
-            <p key={card.uuid || card.name}>
-              {card.name} {card.manaCost} {card.type}{' '}
-              {card.identifiers?.scryfallId ? `(${card.identifiers.scryfallId})` : ''}
-            </p>
+            <div>
+              <p key={card.uuid || card.name}>
+                {card.name} {card.manaCost} {card.type}{' '}
+                {card.identifiers?.scryfallId ? `(${card.identifiers.scryfallId})` : ''}
+                UUID: {card.uuid}
+                {card.legalities?.gladiator ? card.legalities?.gladiator : "nope"}
+              </p>
+            </div>
+            
           ))
         )}
     </div>

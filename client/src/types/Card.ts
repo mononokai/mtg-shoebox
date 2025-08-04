@@ -10,7 +10,7 @@ export type Card = {
   artistIds?: string[];
   cardParts?: string[];
   colorIdentity?: string[];
-  colorIndicatior?: string[];
+  colorIndicator?: string[];
   colors?: string[];
   defense?: string;
   edhrecRank?: number;
