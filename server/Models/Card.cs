@@ -58,105 +58,65 @@ namespace MTGShoebox.Models
 
     public class Identifiers
     {
-        [JsonPropertyName("scryfallId")]
         public string? ScryfallId { get; set; }
-        [JsonPropertyName("scryfallOracleId")]
         public string? ScryfallOracleId { get; set; }
-        [JsonPropertyName("tcgplayerProductId")]
         public string? TcgplayerProductId { get; set; }
-        [JsonPropertyName("tcgplayerEtchedProductId")]
         public string? TcgplayerEtchedProductId { get; set; }
     }
 
     public class LeadershipSkills
     {
-        [JsonPropertyName("brawl")]
         public bool? Brawl { get; set; }
-        [JsonPropertyName("commander")]
         public bool? Commander { get; set; }
-        [JsonPropertyName("oathbreaker")]
         public bool? Oathbreaker { get; set; }
     }
 
     public class Legalities
     {
-        [JsonPropertyName("alchemy")]
         public string? Alchemy { get; set; }
-        [JsonPropertyName("brawl")]
         public string? Brawl { get; set; }
-        [JsonPropertyName("commander")]
         public string? Commander { get; set; }
-        [JsonPropertyName("duel")]
         public string? Duel { get; set; }
-        [JsonPropertyName("explorer")]
         public string? Explorer { get; set; }
-        [JsonPropertyName("future")]
         public string? Future { get; set; }
-        [JsonPropertyName("gladiator")]
         public string? Gladiator { get; set; }
-        [JsonPropertyName("historic")]
         public string? Historic { get; set; }
-        [JsonPropertyName("historicbrawl")]
         public string? Historicbrawl { get; set; }
-        [JsonPropertyName("legacy")]
         public string? Legacy { get; set; }
-        [JsonPropertyName("modern")]
         public string? Modern { get; set; }
-        [JsonPropertyName("oathbreaker")]
         public string? Oathbreaker { get; set; }
-        [JsonPropertyName("oldschool")]
         public string? Oldschool { get; set; }
-        [JsonPropertyName("pauper")]
         public string? Pauper { get; set; }
-        [JsonPropertyName("paupercommander")]
         public string? Paupercommander { get; set; }
-        [JsonPropertyName("penny")]
         public string? Penny { get; set; }
-        [JsonPropertyName("pioneer")]
         public string? Pioneer { get; set; }
-        [JsonPropertyName("predh")]
         public string? Predh { get; set; }
-        [JsonPropertyName("premodern")]
         public string? Premodern { get; set; }
-        [JsonPropertyName("standard")]
         public string? Standard { get; set; }
-        [JsonPropertyName("standardbrawl")]
         public string? Standardbrawl { get; set; }
-        [JsonPropertyName("timeless")]
         public string? Timeless { get; set; }
-        [JsonPropertyName("vintage")]
         public string? Vintage { get; set; }
     }
 
     public class PurchaseUrls
     {
-        [JsonPropertyName("cardKingdom")]
         public string? CardKingdom { get; set; }
-        [JsonPropertyName("cardKingdomEtched")]
         public string? CardKingdomEtched { get; set; }
-        [JsonPropertyName("cardKingdomFoil")]
         public string? CardKingdomFoil { get; set; }
-        [JsonPropertyName("cardmarket")]
         public string? Cardmarket { get; set; }
-        [JsonPropertyName("tcgplayer")]
         public string? Tcgplayer { get; set; }
-        [JsonPropertyName("tcgplayerEtched")]
         public string? TcgplayerEtched { get; set; }
     }
 
     public class RelatedCards
     {
-        [JsonPropertyName("reverseRelated")]
         public List<string>? ReverseRelated { get; set; }
-        [JsonPropertyName("spellbook")]
         public List<string>? Spellbook { get; set; }
     }
 
     public class Rulings
     {
-        [JsonPropertyName("date")]
         public string? Date { get; set; }
-        [JsonPropertyName("text")]
         public string? Text { get; set; }
     }
 }
