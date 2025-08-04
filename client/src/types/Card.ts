@@ -54,6 +54,6 @@ export type Card = {
   toughness?: string;
   type?: string;
   types?: string[];
-  uuid?: string;
+  uuid: string;
   variations?: string[];
 };

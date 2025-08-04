@@ -52,7 +52,7 @@ namespace MTGShoebox.Models
         public string? Toughness { get; set; }
         public string? Type { get; set; }
         public List<string>? Types { get; set; }
-        public string? Uuid { get; set; }
+        public required string Uuid { get; set; }
         public List<string>? Variations { get; set; }
     }
 
