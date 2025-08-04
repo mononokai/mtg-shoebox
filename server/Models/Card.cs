@@ -16,6 +16,7 @@ namespace MTGShoebox.Models
         public string? FlavorText { get; set; }
         public List<string>? FrameEffects { get; set; }
         public Identifiers? Identifiers { get; set; }
+        public string? ImageUrl { get; set; }
         public bool? IsFullArt { get; set; }
         public bool? IsPromo { get; set; }
         public bool? IsRebalanced { get; set; }

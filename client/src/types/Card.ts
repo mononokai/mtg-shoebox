@@ -19,6 +19,7 @@ export type Card = {
   flavorText?: string;
   frameEffects?: string[];
   identifiers?: Identifiers;
+  imageUrl?: string;
   isFullArt?: boolean;
   isPromo?: boolean;
   isRebalanced?: boolean;
