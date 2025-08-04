@@ -1,3 +1,4 @@
+using System.Text.Json;
 using Elastic.Clients.Elasticsearch;
 using MTGShoebox.Services;
 
@@ -19,7 +20,11 @@ builder.Services.AddCors(options =>
 );
 
 // Add controller support
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
+    }
+);
 
 // Add CardSearchService
 builder.Services.AddScoped<CardSearchService>();
