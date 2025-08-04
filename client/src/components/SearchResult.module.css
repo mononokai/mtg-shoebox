@@ -1,0 +1,12 @@
+.resultsContainer {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.result {
+  width: 300px;
+}
+
+.cardImage {
+  height: 200px;
+}

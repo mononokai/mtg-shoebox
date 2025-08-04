@@ -3,6 +3,7 @@ import type { Card } from '../types/Card';
 import { fetchCards } from '../services/cardService';
 import SearchResult from '../components/SearchResult';
 import { useSearchParams } from 'react-router-dom';
+import styles from './SearchPage.module.css'
 
 export default function SearchPage() {
   const [cards, setCards] = useState<Card[]>();
@@ -62,7 +63,7 @@ export default function SearchPage() {
   }, [searchParams]);
 
   return (
-    <div>
+    <div className={styles.pageContainer}>
       <div>
         <input
           type="search"
@@ -77,7 +78,7 @@ export default function SearchPage() {
           Search
         </button>
       </div>
-      <div>
+      <div className={styles.resultsContainer}>
         {errorMessage && <p style={{ color: 'red ' }}>{errorMessage}</p>}
         <SearchResult
           isLoading={isLoading}
