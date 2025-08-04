@@ -1,4 +1,5 @@
 import type { Card } from '../types/Card'
+import styles from './SearchResult.module.css'
 
 type SearchResultProps = {
   isLoading: boolean;
@@ -8,7 +9,7 @@ type SearchResultProps = {
 
 export default function SearchResult({ isLoading, cards, hasSearched }: SearchResultProps) {
   return (
-    <div>
+    <div className={styles.resultsContainer}>
       {isLoading ? (
           <p>Loading...</p>
         ) : !hasSearched ? (
@@ -19,13 +20,14 @@ export default function SearchResult({ isLoading, cards, hasSearched }: SearchRe
           <p>No cards found.</p>
         ) : (
           cards.map((card) => (
-            <div>
+            <div className={styles.result}>
               <p key={card.uuid || card.name}>
                 {card.name} {card.manaCost} {card.type}{' '}
                 {card.identifiers?.scryfallId ? `(${card.identifiers.scryfallId})` : ''}
                 UUID: {card.uuid}
                 {card.legalities?.gladiator ? card.legalities?.gladiator : "nope"}
               </p>
+              <img src={card.imageUrl} alt="" className={styles.cardImage}/>
             </div>
             
           ))
