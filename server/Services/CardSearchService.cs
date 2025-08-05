@@ -23,6 +23,7 @@ namespace MTGShoebox.Services
                     )
                 )
                 .Size(10) // TODO: Adjust the size once pagination is implemented
+                .Collapse(c => c.Field("identifiers.scryfallOracleId.keyword"))
             );
 
             var cards = response.Hits.Select(hit => hit.Source!).ToList();
